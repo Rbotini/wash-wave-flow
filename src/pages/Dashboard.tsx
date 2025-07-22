@@ -3,6 +3,7 @@ import { Layout } from '@/components/Layout';
 import { CustomerForm } from '@/components/forms/CustomerForm';
 import { CarForm } from '@/components/forms/CarForm';
 import { WashProgress } from '@/components/WashProgress';
+import { DailySummary, addDailyWashRecord } from '@/components/DailySummary';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -131,6 +132,16 @@ const Dashboard = () => {
       description: `Serviço finalizado. Total: R$ ${finalPrice.toFixed(2)}`,
     });
     
+    // Adicionar registro ao resumo diário
+    if (selectedCustomer && selectedCar && selectedWashType) {
+      addDailyWashRecord({
+        customerName: selectedCustomer.name,
+        carInfo: `${selectedCar.brand} ${selectedCar.model} (${selectedCar.plate})`,
+        washType: selectedWashType.name,
+        price: finalPrice
+      });
+    }
+    
     // Resetar seleções
     setSelectedCustomer(null);
     setSelectedCar(null);
@@ -140,6 +151,9 @@ const Dashboard = () => {
 
   const renderMenu = () => (
     <div className="space-y-8">
+      {/* Resumo Diário */}
+      <DailySummary />
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setCurrentStep('customer')}>
           <CardHeader className="text-center">
