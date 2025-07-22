@@ -52,6 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				water: {
+					light: 'hsl(var(--water-light))',
+					medium: 'hsl(var(--water-medium))',
+					dark: 'hsl(var(--water-dark))'
+				},
+				soap: 'hsl(var(--soap))',
+				foam: 'hsl(var(--foam))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +91,46 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'water-fill': {
+					'0%': { 
+						'clip-path': 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)',
+						opacity: '0.8'
+					},
+					'100%': { 
+						'clip-path': 'polygon(0 100%, 100% 100%, 100% 0%, 0 0%)',
+						opacity: '1'
+					}
+				},
+				'bubble-float': {
+					'0%': { 
+						transform: 'translateY(20px) scale(0.8)',
+						opacity: '0'
+					},
+					'50%': {
+						opacity: '1'
+					},
+					'100%': { 
+						transform: 'translateY(-20px) scale(1.2)',
+						opacity: '0'
+					}
+				},
+				'progress-shimmer': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100%)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'water-fill': 'water-fill var(--duration, 10s) ease-in-out forwards',
+				'bubble-float': 'bubble-float 2s ease-in-out infinite',
+				'progress-shimmer': 'progress-shimmer 2s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'gradient-water': 'var(--gradient-water)',
+				'gradient-wash': 'var(--gradient-wash)',
+				'gradient-clean': 'var(--gradient-clean)'
 			}
 		}
 	},
